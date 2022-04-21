@@ -128,7 +128,6 @@ namespace Hangman.Core.Game
 
                  for (int i = 0; i < _guessWord.Length; i++)
                  {
-                    
                     //This loops through each letter and decrement on each character.
 
                     if (_guessWord.Contains(guess))
