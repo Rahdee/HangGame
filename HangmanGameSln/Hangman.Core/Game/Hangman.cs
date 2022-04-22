@@ -7,6 +7,8 @@ using HangmanRenderer.Renderer;
 
 namespace Hangman.Core.Game
 {
+    // HangMan steps
+
     // 1) Take a random word from a string array
     //  and store it into a string "WordToFind".
 
@@ -94,13 +96,17 @@ namespace Hangman.Core.Game
             gameLives = 6;
 
             bool game = true;
+            bool replay = true;
 
-            while(game)
+            while (replay)
             {
-              _renderer.Render(5, 5, gameLives);
 
-                 try
-                 {
+                while (game)
+                {
+                    _renderer.Render(5, 5, gameLives);
+
+                    try
+                    {
                         Console.SetCursorPosition(0, 13);
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write("Your current guess: ");
@@ -109,61 +115,87 @@ namespace Hangman.Core.Game
                         Console.SetCursorPosition(0, 15);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("What is your next guess: ");
+<<<<<<< HEAD
                         newGuess = Console.ReadLine();
                         newGuess = newGuess.ToLower();
                         Console.SetCursorPosition(35, 18);
                         Console.WriteLine("                                                             ");
-                    
-                        TheOverwrittenWord(newGuess[0]);
-                 }
-                 catch (IndexOutOfRangeException EX)
-                 {
-                    Console.SetCursorPosition(35, 18);
-                    Console.Write(EX.Message);
-                 }
 
-                 if (newGuess.Length > 1)
-                 {
+                        TheOverwrittenWord(newGuess[0]);
+=======
+                        _guessWord = Console.ReadLine();
+                        _guessWord = _guessWord.ToUpper();
+                        Console.SetCursorPosition(35, 15);
+                        Console.WriteLine("                        ");
+                        Overwrite(_guessWord[0]);
+>>>>>>> b1fcb15ed5f1d4005434b2a5e74e1cd559168d4b
+                    }
+                    catch (IndexOutOfRangeException EX)
+                    {
+                        Console.SetCursorPosition(35, 18);
+                        Console.Write(EX.Message);
+                    }
+
+<<<<<<< HEAD
+                    if (newGuess.Length > 1)
+=======
+                 if (_guessWord.Length > 1)
+>>>>>>> b1fcb15ed5f1d4005434b2a5e74e1cd559168d4b
+                    {
                         Console.SetCursorPosition(35, 18);
                         Console.Write("You can't enter more than 1 letter.");
-                 }
+                    }
 
-                 for (int i = 0; i < _guessWord.Length; i++)
-                 {
-                    if (_guessWord.Contains(newGuess))
+                    for (int i = 0; i < _guessWord.Length; i++)
+                    {
+<<<<<<< HEAD
+                        if (_guessWord.Contains(newGuess))
+                        {
+
+                        }
+                        else if (!_guessWord.Contains(newGuess))
+=======
+                    //This loops through each letter and decrement on each character.
+
+                    if (_guessWord.Contains(_guessWord))
                     {
 
                     }
-                    else if (!_guessWord.Contains(newGuess))
-                    {
-                        gameLives--;
+                    else if (!_guessWord.Contains(_guessWord))
+>>>>>>> b1fcb15ed5f1d4005434b2a5e74e1cd559168d4b
+                        {
+                            gameLives--;
 
-                        break;
+                            break;
+                        }
+
                     }
 
-                 }
+                    Console.SetCursorPosition(0, 17);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(ReturnUnderscore());
 
-                Console.SetCursorPosition(0, 17);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(ReturnUnderscore());
+                    if (_underscoreWords == _guessWord)
+                    {
+                        Console.SetCursorPosition(0, 18);
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"You Win! The word was {_guessWord}");
+                        game = false;
+                    }
+                    if (gameLives == 0)
+                    {
+                        _renderer.Render(5, 5, 0);
+                        Console.SetCursorPosition(0, 18);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"You Lose! The word was {_guessWord}");
+                        game = false;
 
-                if (_underscoreWords == _guessWord)
-                {
-                    Console.SetCursorPosition(0, 18);
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"You Win! The word was {_guessWord}");
-                    game = false;
+                    }
+
+                    //if()
                 }
-                if (gameLives == 0)
-                {
-                    _renderer.Render(5, 5, 0);
-                    Console.SetCursorPosition(0, 18);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"You Lose! The word was {_guessWord}");
-                    game = false;
+            }
 
-                }
-            }   
         }
     }
 }
