@@ -38,6 +38,7 @@ namespace Hangman.Core.Game
         private string _guessWord;
         private char[] Overwrite;
         private string newGuess;
+        private string[] SecretWords;
 
         public string ReturnUnderscore()
         {
@@ -192,8 +193,24 @@ namespace Hangman.Core.Game
 
                     }
 
-                    //if()
+                    if (gameLives == 0 || _underscoreWords == _guessWord)
+                    {
+                        Console.SetCursorPosition(0, 19);
+                        Console.WriteLine("Would you like to play again? Yes or No: ");
+                        string answer = Console.ReadLine();
+                        Console.SetCursorPosition(0, 22);
+                        answer = answer.ToLower();
+
+                        if (answer == "Yes")
+                        {
+                            gameLives = 6;
+                            _guessWord = SecretWords[index];
+                        }
+
+                    }
+
                 }
+
             }
 
         }
