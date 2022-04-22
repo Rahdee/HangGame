@@ -7,6 +7,8 @@ using HangmanRenderer.Renderer;
 
 namespace Hangman.Core.Game
 {
+    // HangMan steps
+
     // 1) Take a random word from a string array
     //  and store it into a string "WordToFind".
 
