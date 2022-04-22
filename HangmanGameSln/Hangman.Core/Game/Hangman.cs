@@ -97,11 +97,7 @@ namespace Hangman.Core.Game
             gameLives = 6;
 
             bool game = true;
-            bool replay = true;
-
-            while (replay)
-            {
-
+          
                 while (game)
                 {
                     _renderer.Render(5, 5, gameLives);
@@ -193,25 +189,7 @@ namespace Hangman.Core.Game
 
                     }
 
-                    if (gameLives == 0 || _underscoreWords == _guessWord)
-                    {
-                        Console.SetCursorPosition(0, 19);
-                        Console.WriteLine("Would you like to play again? Yes or No: ");
-                        string answer = Console.ReadLine();
-                        Console.SetCursorPosition(0, 22);
-                        answer = answer.ToLower();
-
-                        if (answer == "Yes")
-                        {
-                            gameLives = 6;
-                            _guessWord = SecretWords[index];
-                        }
-
-                    }
-
                 }
-
-            }
 
         }
     }
