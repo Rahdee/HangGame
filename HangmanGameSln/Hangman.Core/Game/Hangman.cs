@@ -136,7 +136,7 @@ namespace Hangman.Core.Game
 <<<<<<< HEAD
                     if (newGuess.Length > 1)
 =======
-                 if (_guessWord.Length > 1)
+                      if (_guessWord.Length > 1)
 >>>>>>> b1fcb15ed5f1d4005434b2a5e74e1cd559168d4b
                     {
                         Console.SetCursorPosition(35, 18);
