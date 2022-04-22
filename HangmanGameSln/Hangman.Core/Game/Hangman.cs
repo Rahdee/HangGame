@@ -73,21 +73,21 @@ namespace Hangman.Core.Game
         {
              //turning the underscoreWords into an array
 
-            overWrite = _underscoreWords.ToCharArray();
+            Overwrite = _underscoreWords.ToCharArray();
 
             /*Forloops loops through each charcter of the word, 
              * An " overWrite " character overwrites the underscores in the string*/
 
             for (int i = 0; i < _guessWord.Length; i++)
             {
-                if (_guessWords[i] == charcterGuess)
+                if (_guessWord[i] == letterGuessed)
                 {
-                    overWrite[i] = charcterGuess;
+                    Overwrite[i] = letterGuessed;
                 }
             }
             //overwriting the underscores
 
-            _underscoreWords = new string(overWrite);
+            _underscoreWords = new string(Overwrite);
         }
 
         public void Run()
@@ -109,18 +109,18 @@ namespace Hangman.Core.Game
                         Console.SetCursorPosition(0, 15);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("What is your next guess: ");
-                        guess = Console.ReadLine();
-                        guess = guess.ToUpper();
+                        _guessWord = Console.ReadLine();
+                        _guessWord = _guessWord.ToUpper();
                         Console.SetCursorPosition(35, 15);
-                        Console.WriteLine("                                                        ");
-                        OverWrite(guess[0]);
+                        Console.WriteLine("                        ");
+                        Overwrite(_guessWord[0]);
                  }
                  catch (IndexOutOfRangeException EX)
                  {
                     Console.SetCursorPosition(35, 15);
                     Console.Write(EX.Message);
                  }
-                 if (guess.Length > 1)
+                 if (_guessWord.Length > 1)
                  {
                         Console.SetCursorPosition(35, 15);
                     Console.Write("You can't enter more than 1 letter.");
@@ -130,13 +130,13 @@ namespace Hangman.Core.Game
                  {
                     //This loops through each letter and decrement on each character.
 
-                    if (_guessWord.Contains(guess))
+                    if (_guessWord.Contains(_guessWord))
                     {
 
                     }
-                    else if (!_guessWord.Contains(guess))
+                    else if (!_guessWord.Contains(_guessWord))
                     {
-                        gamelives--;
+                        gameLives--;
 
                         break;
                     }
