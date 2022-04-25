@@ -180,7 +180,9 @@ namespace Hangman.Core.Game
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"You Lose! The word was {_guessWord}");
                     game = false;
+
                 }
+
 
             }
 
